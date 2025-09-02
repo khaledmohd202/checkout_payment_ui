@@ -15,7 +15,7 @@ class ApiService {
       data: body,
       options: Options(
         contentType: contentType,
-        headers: headers ??  {'Authorization': 'Bearer $token'},
+        headers: headers ?? {'Authorization': 'Bearer $token'},
       ),
     );
 

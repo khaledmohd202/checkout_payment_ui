@@ -19,7 +19,9 @@ class CheckoutRepoImpl extends CheckoutRepo {
       return right(null);
     } on StripeException catch (e) {
       return left(
-        ServerFailure(errorMessage: e.error.message ?? 'Oops there was an error'),
+        ServerFailure(
+          errorMessage: e.error.message ?? 'Oops there was an error',
+        ),
       );
     } catch (e) {
       return left(ServerFailure(errorMessage: e.toString()));

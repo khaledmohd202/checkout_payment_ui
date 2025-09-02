@@ -34,13 +34,12 @@ class EphemeralKeyModel {
   }
 
   Map<String, dynamic> toJson() => {
-        'id': id,
-        'object': object,
-        'associated_objects':
-            associatedObjects?.map((e) => e.toJson()).toList(),
-        'created': created,
-        'expires': expires,
-        'livemode': livemode,
-        'secret': secret,
-      };
+    'id': id,
+    'object': object,
+    'associated_objects': associatedObjects?.map((e) => e.toJson()).toList(),
+    'created': created,
+    'expires': expires,
+    'livemode': livemode,
+    'secret': secret,
+  };
 }

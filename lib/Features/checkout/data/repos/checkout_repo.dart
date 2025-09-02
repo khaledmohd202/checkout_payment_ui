@@ -3,7 +3,7 @@ import 'package:checkout_payment_ui/core/errors/failures.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class CheckoutRepo {
-  Future<Either<Failure, void>> makePayment ({
+  Future<Either<Failure, void>> makePayment({
     required PaymentIntentInputModel paymentIntentInputModel,
   });
 }

@@ -11,8 +11,5 @@ class AssociatedObject {
     );
   }
 
-  Map<String, dynamic> toJson() => {
-        'id': id,
-        'type': type,
-      };
+  Map<String, dynamic> toJson() => {'id': id, 'type': type};
 }
