@@ -45,7 +45,7 @@ class StripePaymentCubit extends Cubit<StripePaymentState> {
           try {
             emit(StripePaymentSuccess());
           } on StripeException catch (e) {
-            // Handle Stripe cancelation & other failures
+            // Handle Stripe cancellation & other failures
             emit(
               StripePaymentFailure(
                 errorMessage: e.error.localizedMessage ?? "Payment failed",
