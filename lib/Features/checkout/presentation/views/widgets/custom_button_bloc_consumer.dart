@@ -14,7 +14,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 
 class CustomButtonBlocConsumer extends StatelessWidget {
-  const CustomButtonBlocConsumer({super.key});
+  const CustomButtonBlocConsumer({super.key, required this.isPayPal});
+
+  final bool isPayPal;
 
   @override
   Widget build(BuildContext context) {
@@ -39,15 +41,12 @@ class CustomButtonBlocConsumer extends StatelessWidget {
       builder: (context, state) {
         return CustomButton(
           onTap: () {
-            // PaymentIntentInputModel paymentIntentInputModel =
-            //     PaymentIntentInputModel(amount: '100', currency: 'usd', customerId: ApiKeys.customerId);
-
-            // BlocProvider.of<StripePaymentCubit>(
-            //   context,
-            // ).makePayment(paymentIntentInputModel: paymentIntentInputModel);
-
-            var transactionData = getTransactionsData();
-            executePayPalPayment(context, transactionData);
+            if (isPayPal) {
+              var transactionData = getTransactionsData();
+              executePayPalPayment(context, transactionData);
+            } else {
+              executeStripePayment(context);
+            }
           },
           isLoading: state is StripePaymentLoading ? true : false,
           text: 'Continue',
@@ -56,7 +55,22 @@ class CustomButtonBlocConsumer extends StatelessWidget {
     );
   }
 
-  void executePayPalPayment(BuildContext context, ({AmountModel amountModel, ItemListModel itemList}) transactionData) {
+  void executeStripePayment(BuildContext context) {
+    PaymentIntentInputModel paymentIntentInputModel =
+        PaymentIntentInputModel(
+          amount: '100',
+          currency: 'usd',
+          customerId: ApiKeys.customerId,
+        );
+    BlocProvider.of<StripePaymentCubit>(
+      context,
+    ).makePayment(paymentIntentInputModel: paymentIntentInputModel);
+  }
+
+  void executePayPalPayment(
+    BuildContext context,
+    ({AmountModel amountModel, ItemListModel itemList}) transactionData,
+  ) {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (BuildContext context) => PaypalCheckoutView(
