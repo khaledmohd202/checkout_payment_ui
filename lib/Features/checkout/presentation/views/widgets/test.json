@@ -1,9 +1,17 @@
 {
-  "total": "100",
-  "currency": "USD",
-  "details": {
-      "subtotal": "100",
-      "shipping": "0",
-      "shipping_discount": 0
-    }
+    "items": [
+        {
+            "name": "Apple",
+            "quantity": 4,
+            "price": "10",
+            "currency": "USD"
+        },
+        {
+            "name": "Pineapple",
+            "quantity": 5,
+            "price": "12",
+            "currency": "USD"
+        }
+    ]
 }
+
